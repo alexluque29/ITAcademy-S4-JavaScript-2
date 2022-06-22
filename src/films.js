@@ -17,7 +17,7 @@ function getMoviesFromDirector(movies, director) {
 // Exercise 3: Calculate the average of the films of a given director.
 
 function average(movies){
-  let scores = movies.map((movie) => movie.score);
+  let scores = movies.map(movie => movie.score);
   let averageScores = (scores.reduce((a, b) => a + b) / scores.length).toFixed(2);
   //console.log("EXERCICE 3 ->", averageScores);
   return parseFloat(averageScores);
@@ -25,16 +25,15 @@ function average(movies){
 
 function moviesAverageOfDirector(movies, director) {
 
-  let moviesDirector = movies.filter((movie) => movie.director == director);
+  let moviesDirector = movies.filter(movie => movie.director == director);
   let result = average(moviesDirector);
   return result;
 }
 
-
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(movies) {
 
-  let allMovies = movies.map((movie) => movie.title);
+  let allMovies = movies.map(movie => movie.title);
   let moviesSort = allMovies.sort().slice(0, 20);
   //console.log("EXERCICE 4 ->", moviesSort);
   return moviesSort;
@@ -58,23 +57,46 @@ function orderByYear(movies) {
 
 function moviesAverageByCategory(movies, genre) {
 
-  let moviesGenre = movies.filter((movie) => movie.genre == genre && movie.score !=="");
+  let moviesGenre = movies.filter(movie => movie.genre == genre && movie.score !=="");
   let result = average(moviesGenre);
   return result;
   }
 
 // Exercise 7: Modify the duration of movies to minutes
+
 function hoursToMinutes(movies) {
-   
-  }   
+
+  let movieDuration = movies.map((movie) => {
+  let duration = movie.duration;
+  let realMin;
+
+  let hours = parseInt(duration.slice(0, 1) * 60);
+  let minutes = parseInt(duration.slice(2, -3));
+  minutes >= 0 ? (realMin = minutes) : (realMin = 0);
+  
+  let durationInMin = {
+      duration: parseInt(hours + realMin)
+    };
+    return durationInMin;
+  });
+  console.log('EXERCICE 7 ->', movieDuration);
+  return movieDuration;
+}   
 
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
+
+function bestFilmOfYear(movies, year) {
+  let filmByYears = movies.filter(movie => movie.year == year)
+  filmByYears.sort((a,b) => {
+    if (a.year > b.year) {return -1;}
+    if (a.year < b.year) {return 1;}
+    return 0;
+  })
+  let bestFilm = filmByYears.splice(0,1);
+  //console.log("EXERCICE 8 ->", bestFilm);
+  return bestFilm;
 }
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
