@@ -79,7 +79,7 @@ function hoursToMinutes(movies) {
     };
     return durationInMin;
   });
-  console.log('EXERCICE 7 ->', movieDuration);
+  //console.log('EXERCICE 7 ->', movieDuration);
   return movieDuration;
 }   
 
